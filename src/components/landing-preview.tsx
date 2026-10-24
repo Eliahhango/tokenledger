@@ -1,27 +1,9 @@
-import { TrendChart, TokenLegend } from "./charts";
-import type { SeriesPoint } from "@/lib/stats";
 import { compactNumber, usd } from "@/lib/format";
 
 const volumes = [
   1.9, 2.4, 1.6, 2.9, 3.4, 2.7, 3.8, 2.2, 3.1, 4.2, 3.6, 4.8, 3.9, 2.8, 4.4, 5.1, 4.3, 5.6,
   4.9, 3.7, 5.2, 6.1, 5.4, 6.8,
 ];
-
-const points: SeriesPoint[] = volumes.map((value, index) => {
-  const tokens = value * 1_000_000;
-  const day = String(index + 1).padStart(2, "0");
-  return {
-    bucket: `2026-10-${day}`,
-    input: tokens * 0.55,
-    output: tokens * 0.18,
-    reasoning: tokens * 0.05,
-    cacheRead: tokens * 0.15,
-    cacheWrite: tokens * 0.07,
-    tokens,
-    cost: value * 24.6,
-    requests: Math.round(value * 42),
-  };
-});
 
 const models = [
   { name: "claude-sonnet-4-5", provider: "anthropic", tokens: 18_400_000, cost: 241.8, color: "#b8f26a" },
@@ -70,12 +52,25 @@ export function LandingPreview() {
           ))}
         </div>
 
-        <div className="mt-2.5 rounded-xl border border-line bg-[#0a0c11] p-3">
+        <div className="mt-2.5 rounded-xl border border-line bg-[#080809] p-3">
           <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
             <span className="text-[11px] font-medium text-muted">Token volume</span>
-            <TokenLegend />
+            <span className="chip !text-[9px]">Live</span>
           </div>
-          <TrendChart points={points} />
+          <div className="flex h-[160px] items-end gap-1.5">
+            {volumes.map((value, index) => (
+              <div key={index} className="flex-1">
+                <div
+                  className="w-full rounded-t-sm bg-gradient-to-t from-white/10 to-white/60"
+                  style={{ height: `${Math.max(12, (value / 6.8) * 100)}%` }}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 flex items-center justify-between text-[10px] text-dim">
+            <span>Oct 1</span>
+            <span>Oct 24</span>
+          </div>
         </div>
 
         <div className="mt-2.5 grid gap-2.5 sm:grid-cols-2">
