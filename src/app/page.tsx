@@ -132,18 +132,19 @@ function Icon({ name }: { name: string }) {
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[860px] overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="glow-lime absolute left-1/2 top-[-16rem] h-[38rem] w-[52rem] -translate-x-1/2" />
-        <div className="glow-cyan absolute right-[-8rem] top-40 h-[26rem] w-[30rem]" />
+      <div className="noise" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[920px] overflow-hidden">
+        <div className="absolute inset-0 grid-noise" />
+        <div className="glow-orb absolute left-1/2 top-[-18rem] h-[42rem] w-[64rem] -translate-x-1/2" />
+        <div className="glow-blue absolute right-[-12rem] top-[-6rem] h-[36rem] w-[38rem]" />
       </div>
 
-      <header className="relative z-40 border-b border-white/[0.04]">
-        <div className="mx-auto flex h-[68px] max-w-6xl items-center gap-6 px-5">
+      <header className="relative z-40">
+        <div className="mx-auto flex h-[76px] max-w-6xl items-center gap-6 px-5">
           <Link href="/" aria-label="TokenLedger home">
             <Logo />
           </Link>
-          <nav className="ml-auto hidden items-center gap-6 text-[13px] text-muted md:flex">
+          <nav className="ml-auto hidden items-center gap-8 text-[13px] text-muted md:flex">
             <a href="#features" className="transition-colors hover:text-fg">
               Features
             </a>
@@ -159,45 +160,49 @@ export default function LandingPage() {
               Sign in
             </Link>
             <Link href="/start" className="btn btn-primary btn-sm">
-              Get started
+              <span>Create your ledger</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </Link>
           </div>
         </div>
       </header>
 
       <main className="relative">
-        <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:pt-24">
-          <div className="hero-rise flex flex-col items-center text-center">
+        <section className="mx-auto max-w-6xl px-5 pb-20 pt-12 sm:pt-20">
+          <div className="hero-fade flex flex-col items-center text-center">
             <span className="pill">
-              <span className="h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_10px_rgba(184,242,106,0.9)]" />
-              Open source · MCP-native · Self-hosted
+              <span className="pill-dot" />
+              <span>Open source · MCP-native · Self-hosted</span>
             </span>
-            <h1 className="mt-6 max-w-4xl text-[42px] font-semibold leading-[0.98] tracking-[-0.045em] sm:text-[62px] lg:text-[74px]">
-              Every token. Every model.
+            <h1 className="mt-8 max-w-5xl text-balance text-[44px] font-medium leading-[0.98] tracking-[-0.06em] sm:text-[72px] lg:text-[88px]">
+              <span className="text-gradient">Every token. Every model.</span>
               <br />
-              <span className="bg-gradient-to-r from-lime via-cyan to-violet bg-clip-text text-transparent">
-                One ledger.
-              </span>
+              <span className="text-accent-gradient">One ledger.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-[17px]">
-              TokenLedger is a self-hosted usage dashboard for your AI coding agents. Connect
-              opencode, Claude Code, Cursor, or any MCP client — then see tokens, models, projects,
-              and spend in one place.
+            <p className="mt-6 max-w-2xl text-balance text-[15px] leading-relaxed text-muted sm:text-[18px]">
+              TokenLedger is a cinematic, self-hosted usage dashboard for your AI coding agents.
+              Connect opencode, Claude Code, Cursor, or any MCP client and track tokens, models,
+              projects, and spend in one place.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/start" className="btn btn-primary !h-11 !px-5">
-                Create your ledger →
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link href="/start" className="btn btn-primary">
+                <span>Create your ledger</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
-              <a href="#how" className="btn btn-ghost !h-11 !px-5">
+              <a href="#how" className="btn btn-ghost">
                 See how it connects
               </a>
             </div>
-            <p className="mt-4 text-[11.5px] text-dim">
+            <p className="mt-5 text-[12px] text-dim">
               No credit card · No email · Your data stays in your Postgres
             </p>
           </div>
 
-          <div className="hero-rise-2 mt-14 sm:mt-16">
+          <div className="hero-fade-delay mt-16 sm:mt-20">
             <LandingPreview />
           </div>
 
