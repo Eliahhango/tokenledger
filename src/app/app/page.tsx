@@ -19,16 +19,16 @@ import { getStats } from "@/lib/stats";
 
 export const dynamic = "force-dynamic";
 
-const palette = [
-  "#b8f26a",
-  "#66e3ff",
-  "#a78bfa",
-  "#f5c56b",
-  "#ff7a90",
-  "#7dd3fc",
-  "#fda4af",
-  "#c4b5fd",
-];
+  const palette = [
+    "#22d3ee",
+    "#a78bfa",
+    "#22c55e",
+    "#f59e0b",
+    "#f43f5e",
+    "#38bdf8",
+    "#10b981",
+    "#e5e7eb",
+  ];
 
 export default async function OverviewPage({
   searchParams,
@@ -77,16 +77,16 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
 
   return (
     <div>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <div className="flex items-center gap-2.5">
-            <h1 className="text-[24px] font-semibold tracking-[-0.035em] sm:text-[27px]">
+          <div className="flex items-center gap-2">
+            <h1 className="text-[22px] font-semibold tracking-[-0.02em] sm:text-[26px]">
               {workspace.name}
             </h1>
-            <span className="chip !text-[10px]">{workspace.key_prefix}…</span>
+            <span className="chip">{workspace.key_prefix}…</span>
           </div>
           <p className="mt-1 text-[12px] text-muted">
-            Usage overview · {range.label} · amounts in USD · days in UTC
+            Overview · {range.label} · USD · UTC
           </p>
         </div>
         <RangePicker current={range.key} />
@@ -166,31 +166,31 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
           </div>
 
           <div className="mt-3 grid gap-3 lg:grid-cols-3">
-            <div className="card p-5 lg:col-span-2">
+            <div className="card card-pad lg:col-span-2">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h2 className="text-[13px] font-semibold">Token volume</h2>
+                  <h2 className="text-[13px] font-medium">Token volume</h2>
                   <p className="mt-0.5 text-[11px] text-muted">
                     {range.label} · {compactNumber(totals.tokens)} tokens
                   </p>
                 </div>
                 <TokenLegend />
               </div>
-              <div className="mt-3">
+              <div className="mt-4">
                 <TrendChart points={stats.series} />
               </div>
             </div>
 
-            <div className="card p-5">
-              <h2 className="text-[13px] font-semibold">Tokens by provider</h2>
+            <div className="card card-pad">
+              <h2 className="text-[13px] font-medium">Tokens by provider</h2>
               <p className="mt-0.5 text-[11px] text-muted">Share of total volume</p>
-              <div className="mt-5 flex items-center gap-5">
+              <div className="mt-4 flex items-center gap-5">
                 <Donut
                   data={providerData}
                   centerLabel="tokens"
                   centerValue={compactNumber(totals.tokens)}
                 />
-                <div className="min-w-0 flex-1 space-y-2.5">
+                <div className="min-w-0 flex-1 space-y-2">
                   {stats.providers.map((provider, index) => {
                     const share = totals.tokens > 0 ? (provider.tokens / totals.tokens) * 100 : 0;
                     return (
@@ -222,12 +222,12 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
           </div>
 
           <div className="mt-3 grid gap-3 lg:grid-cols-3">
-            <div className="card p-5 lg:col-span-2">
+            <div className="card card-pad lg:col-span-2">
               <div className="flex items-center justify-between">
-                <h2 className="text-[13px] font-semibold">Models</h2>
-                <span className="chip !text-[10px]">ranked by tokens</span>
+                <h2 className="text-[13px] font-medium">Models</h2>
+                <span className="chip">ranked by tokens</span>
               </div>
-              <div className="mt-4 space-y-4">
+              <div className="mt-4 space-y-3">
                 {stats.models.map((model) => (
                   <div key={`${model.provider}:${model.model}`}>
                     <div className="flex items-baseline justify-between gap-3">
@@ -241,9 +241,9 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
                         </span>
                       </div>
                     </div>
-                    <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/[0.05]">
+                    <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/[0.04]">
                       <div
-                        className="h-full rounded-full bg-lime/70"
+                        className="h-full rounded-full bg-white/70"
                         style={{ width: `${(model.tokens / maxModelTokens) * 100}%` }}
                       />
                     </div>
@@ -261,10 +261,10 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
               </div>
             </div>
 
-            <div className="card p-5">
-              <h2 className="text-[13px] font-semibold">Projects</h2>
+            <div className="card card-pad">
+              <h2 className="text-[13px] font-medium">Projects</h2>
               <p className="mt-0.5 text-[11px] text-muted">Attributed by working directory</p>
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 space-y-2.5">
                 {stats.projects.map((project, index) => (
                   <div key={project.project} className="flex items-center gap-3">
                     <span className="mono w-4 shrink-0 text-[10px] text-dim">
@@ -290,41 +290,39 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
             </div>
           </div>
 
-          <div className="card mt-3 p-5">
+          <div className="card card-pad mt-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-[13px] font-semibold">Recent activity</h2>
-              <span className="chip !text-[10px]">{range.label}</span>
+              <h2 className="text-[13px] font-medium">Recent activity</h2>
+              <span className="chip">{range.label}</span>
             </div>
             <div className="mt-3 overflow-x-auto">
-              <table className="w-full min-w-[620px] text-left text-[11.5px]">
+              <table className="w-full min-w-[620px] text-left text-[12px]">
                 <thead>
-                  <tr className="border-b border-line text-[9.5px] uppercase tracking-[0.13em] text-dim">
-                    <th className="py-2 pr-4 font-medium">Time</th>
-                    <th className="py-2 pr-4 font-medium">Model</th>
-                    <th className="py-2 pr-4 font-medium">Project</th>
-                    <th className="py-2 pr-4 text-right font-medium">Tokens</th>
-                    <th className="py-2 text-right font-medium">Cost</th>
+                  <tr className="border-b border-line">
+                    <th className="pb-2 pr-4 text-left text-[11px] font-medium text-muted">Time</th>
+                    <th className="pb-2 pr-4 text-left text-[11px] font-medium text-muted">Model</th>
+                    <th className="pb-2 pr-4 text-left text-[11px] font-medium text-muted">Project</th>
+                    <th className="pb-2 pr-4 text-right text-[11px] font-medium text-muted">Tokens</th>
+                    <th className="pb-2 text-right text-[11px] font-medium text-muted">Cost</th>
                   </tr>
                 </thead>
                 <tbody>
                   {stats.recent.map((event) => (
-                    <tr key={event.id} className="border-b border-line/60 last:border-0">
-                      <td className="whitespace-nowrap py-2.5 pr-4 text-dim">
+                    <tr key={event.id} className="border-b border-line/60 last:border-0 hover:bg-white/[0.01]">
+                      <td className="whitespace-nowrap py-2 pr-4 text-muted">
                         {timeAgo(event.eventAt)}
                       </td>
-                      <td className="py-2.5 pr-4">
+                      <td className="py-2 pr-4">
                         <div className="flex items-center gap-2">
-                          <span className="truncate text-fg/90">{shortModel(event.model)}</span>
-                          <span className="chip !px-1.5 !py-0.5 !text-[9px]">
-                            {event.provider}
-                          </span>
+                          <span className="truncate text-fg">{shortModel(event.model)}</span>
+                          <span className="chip">{event.provider}</span>
                         </div>
                       </td>
-                      <td className="py-2.5 pr-4 text-muted">{shortPath(event.project)}</td>
-                      <td className="tabular py-2.5 pr-4 text-right text-muted">
+                      <td className="py-2 pr-4 text-muted">{shortPath(event.project)}</td>
+                      <td className="tabular py-2 pr-4 text-right text-muted">
                         {compactNumber(event.tokens)}
                       </td>
-                      <td className="tabular py-2.5 text-right text-fg/85">{usd(event.cost)}</td>
+                      <td className="tabular py-2 text-right text-fg">{usd(event.cost)}</td>
                     </tr>
                   ))}
                   {stats.recent.length === 0 && (

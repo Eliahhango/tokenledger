@@ -57,28 +57,31 @@ export function CreateWorkspaceForm() {
     return (
       <div className="space-y-5">
         <div>
-          <div className="pill !border-lime/30 !text-lime">Ledger ready</div>
-          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em]">
-            {created.workspace.name} is live.
+          <div className="pill">
+            <span className="pill-dot" />
+            Ledger ready
+          </div>
+          <h2 className="mt-3 text-xl font-semibold tracking-[-0.02em]">
+            {created.workspace.name} is live
           </h2>
-          <p className="mt-1.5 text-[13.5px] leading-relaxed text-muted">
+          <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
             This API key is shown once. Copy it now and add it to your client.
           </p>
         </div>
 
-        <div className="rounded-xl border border-amber/25 bg-amber/[0.06] px-4 py-3 text-[12.5px] leading-relaxed text-amber">
+        <div className="rounded-lg border border-amber/30 bg-amber/[0.05] px-3.5 py-2.5 text-[12px] leading-relaxed text-amber">
           Keep this key secret. Anyone with it can write usage to your ledger. Rotate it any time
           from Settings.
         </div>
 
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <span className="label !mb-0">API key</span>
+            <span className="text-[11px] text-fg">API key</span>
             <CopyButton value={created.apiKey} label="Copy key" />
           </div>
           <div className="code">
             <pre>
-              <code className="text-lime">{created.apiKey}</code>
+              <code className="text-emerald">{created.apiKey}</code>
             </pre>
           </div>
         </div>
@@ -123,8 +126,8 @@ export function CreateWorkspaceForm() {
         </div>
       )}
 
-      <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-        {loading ? "Creating ledger…" : "Create ledger →"}
+      <button type="submit" className="btn btn-primary w-full" disabled={loading || name.trim().length === 0}>
+        {loading ? "Creating…" : "Create ledger"}
       </button>
 
       <p className="text-[11.5px] leading-relaxed text-dim">

@@ -55,27 +55,27 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
 
   return (
     <div>
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-2">
         <div>
-          <h1 className="text-[24px] font-semibold tracking-[-0.035em] sm:text-[27px]">
+          <h1 className="text-[22px] font-semibold tracking-[-0.02em] sm:text-[26px]">
             Settings
           </h1>
           <p className="mt-1 text-[12px] text-muted">
-            Connection details for <span className="text-fg/80">{workspace.name}</span>
+            Connection details for <span className="text-fg">{workspace.name}</span>
           </p>
         </div>
       </div>
 
-      <div className="mt-7 grid gap-3 lg:grid-cols-2">
-        <div className="card p-5 lg:col-span-2">
+      <div className="mt-6 grid gap-3 lg:grid-cols-2">
+        <div className="card card-pad lg:col-span-2">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h2 className="text-[13px] font-semibold">API key</h2>
+              <h2 className="text-[13px] font-medium">API key</h2>
               <p className="mt-0.5 text-[11px] text-muted">
                 Used to authenticate ingest, the MCP server, and the REST API.
               </p>
             </div>
-            <span className="chip !text-[10px]">Bearer auth</span>
+            <span className="chip">Bearer auth</span>
           </div>
           <div className="mt-4">
             <RotateKey prefix={workspace.key_prefix} />
@@ -86,10 +86,10 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
           </p>
         </div>
 
-        <div className="card p-5">
+        <div className="card card-pad">
           <div className="flex items-center justify-between">
-            <h2 className="text-[13px] font-semibold">Remote MCP endpoint</h2>
-            <span className="chip !text-[10px]">Streamable HTTP</span>
+            <h2 className="text-[13px] font-medium">Remote MCP endpoint</h2>
+            <span className="chip">Streamable HTTP</span>
           </div>
           <p className="mt-0.5 text-[11px] text-muted">
             Query your spend and log usage from any MCP-compatible client.
@@ -97,20 +97,20 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
           <div className="mt-4 space-y-3">
             <div>
               <div className="mb-1.5 flex items-center justify-between">
-                <span className="label !mb-0">URL</span>
+                <span className="text-[11px] text-fg">URL</span>
                 <CopyButton value={mcpUrl} className="btn btn-ghost btn-sm" />
               </div>
-              <div className="input mono flex h-10 items-center !text-[12.5px]">{mcpUrl}</div>
+              <div className="input mono flex h-9 items-center !text-[12px]">{mcpUrl}</div>
             </div>
             <div>
               <div className="mb-1.5 flex items-center justify-between">
-                <span className="label !mb-0">Authorization header</span>
+                <span className="text-[11px] text-fg">Authorization header</span>
                 <CopyButton
                   value="Authorization: Bearer tl_your_key"
                   className="btn btn-ghost btn-sm"
                 />
               </div>
-              <div className="input mono flex h-10 items-center !text-[12.5px]">
+              <div className="input mono flex h-9 items-center !text-[12px]">
                 Authorization: Bearer tl_your_key
               </div>
             </div>
@@ -121,8 +121,8 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
           </div>
         </div>
 
-        <div className="card p-5">
-          <h2 className="text-[13px] font-semibold">opencode auto-report plugin</h2>
+        <div className="card card-pad">
+          <h2 className="text-[13px] font-medium">opencode auto-report plugin</h2>
           <p className="mt-0.5 text-[11px] text-muted">
             Automatically record completed assistant messages with tokens, cost, model, and
             project.
@@ -146,15 +146,15 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
           </div>
         </div>
 
-        <div className="card p-5 lg:col-span-2">
-          <h2 className="text-[13px] font-semibold">REST API</h2>
+        <div className="card card-pad lg:col-span-2">
+          <h2 className="text-[13px] font-medium">REST API</h2>
           <p className="mt-0.5 text-[11px] text-muted">
             Report usage or fetch aggregated stats with the same API key.
           </p>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
             <div>
               <div className="mb-2 flex items-center gap-2">
-                <span className="chip !text-[10px]">POST</span>
+                <span className="chip">POST</span>
                 <span className="mono text-[11px] text-muted">{ingestUrl}</span>
                 <CopyButton value={ingestUrl} className="btn btn-ghost btn-sm" />
               </div>

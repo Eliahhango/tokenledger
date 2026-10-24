@@ -19,8 +19,8 @@ export function AppNav() {
           <Link
             key={item.href}
             href={item.href}
-            className={`rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors ${
-              active ? "bg-white/[0.06] text-fg" : "text-muted hover:text-fg"
+            className={`rounded-md px-2.5 py-1 text-[13px] transition-colors ${
+              active ? "bg-white/[0.04] text-fg" : "text-muted hover:text-fg"
             }`}
           >
             {item.label}

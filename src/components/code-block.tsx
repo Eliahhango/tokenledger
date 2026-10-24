@@ -14,8 +14,8 @@ export function CodeBlock({
   return (
     <div className={`code ${className}`}>
       <div className="code-head">
-        <span className="mono text-[10px] uppercase tracking-[0.16em] text-dim">{language}</span>
-        {copy && <CopyButton value={code} className="btn btn-ghost btn-sm !h-7 !px-2.5 text-[11px]" />}
+        <span className="text-[11px] text-muted">{language}</span>
+        {copy && <CopyButton value={code} className="btn btn-ghost btn-sm" />}
       </div>
       <pre>
         <code>{code}</code>

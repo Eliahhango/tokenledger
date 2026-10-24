@@ -54,8 +54,8 @@ export function LoginForm() {
         </div>
       )}
 
-      <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-        {loading ? "Checking key…" : "Open dashboard →"}
+      <button type="submit" className="btn btn-primary w-full" disabled={loading || apiKey.trim().length === 0}>
+        {loading ? "Checking…" : "Open dashboard"}
       </button>
     </form>
   );

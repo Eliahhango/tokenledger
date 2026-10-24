@@ -15,18 +15,18 @@ export function Kpi({
   const positive = change != null && change > 0;
 
   return (
-    <div className="card card-pad card-hover">
+    <div className="card card-pad">
       <div className="flex items-start justify-between gap-2">
-        <span className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-dim">
+        <span className="text-[11px] text-muted">
           {label}
         </span>
         {change !== undefined && (
-          <span className="chip !py-1" title="Compared with the previous period">
+          <span className="chip" title="Compared with the previous period">
             {change == null ? (
               display
             ) : (
               <>
-                <span className={positive ? "text-lime" : "text-muted"}>
+                <span className={positive ? "text-emerald" : change < 0 ? "text-rose" : "text-muted"}>
                   {positive ? "↑" : change < 0 ? "↓" : "→"}
                 </span>
                 {display}
@@ -35,10 +35,10 @@ export function Kpi({
           </span>
         )}
       </div>
-      <div className="tabular mt-3.5 text-[30px] font-semibold leading-none tracking-[-0.03em]">
+      <div className="tabular mt-2.5 text-[28px] font-semibold leading-none tracking-[-0.02em]">
         {value}
       </div>
-      <div className="mt-2 text-[11.5px] text-muted">{hint}</div>
+      <div className="mt-1.5 text-[11px] text-dim">{hint}</div>
     </div>
   );
 }

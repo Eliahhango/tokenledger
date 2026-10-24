@@ -54,16 +54,16 @@ export function RotateKey({ prefix }: { prefix: string }) {
       )}
 
       {apiKey && (
-        <div className="mt-4 rounded-xl border border-amber/25 bg-amber/[0.05] p-4">
+        <div className="mt-4 rounded-lg border border-amber/30 bg-amber/[0.05] p-3.5">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <span className="text-[11.5px] font-semibold text-amber">
+            <span className="text-[12px] font-medium text-amber">
               New key — copy it now. It will not be shown again.
             </span>
             <CopyButton value={apiKey} label="Copy key" className="btn btn-ghost btn-sm" />
           </div>
           <div className="code mt-2.5">
             <pre>
-              <code className="text-lime">{apiKey}</code>
+              <code className="text-emerald">{apiKey}</code>
             </pre>
           </div>
         </div>

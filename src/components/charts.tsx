@@ -84,10 +84,10 @@ export function TrendChart({ points }: { points: SeriesPoint[] }) {
               x2={W - PR}
               y1={y}
               y2={y}
-              stroke="#1e2330"
+              stroke="rgba(255,255,255,0.04)"
               strokeDasharray={fraction === 0 ? undefined : "3 5"}
             />
-            <text x={PL - 10} y={y + 3.5} textAnchor="end" fontSize="10" fill="#5e667a">
+            <text x={PL - 10} y={y + 3.5} textAnchor="end" fontSize="10" fill="#71717a">
               {compactNumber(max * fraction)}
             </text>
           </g>
@@ -115,9 +115,9 @@ export function TrendChart({ points }: { points: SeriesPoint[] }) {
                   y={y}
                   width={barW}
                   height={Math.max(height, 0.6)}
-                  rx={1.5}
+                  rx={1}
                   fill={segment.color}
-                  opacity={0.92}
+                  opacity={0.9}
                 />
               );
             })}
@@ -127,7 +127,7 @@ export function TrendChart({ points }: { points: SeriesPoint[] }) {
                 y={H - 10}
                 textAnchor="middle"
                 fontSize="10"
-                fill="#5e667a"
+                fill="#71717a"
               >
                 {bucketLabel(point.bucket)}
               </text>
@@ -164,7 +164,7 @@ export function Donut({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#171b24"
+          stroke="rgba(255,255,255,0.04)"
           strokeWidth={stroke}
         />
         {total > 0 &&
@@ -194,7 +194,7 @@ export function Donut({
           })}
       </svg>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-[10px] uppercase tracking-[0.14em] text-dim">{centerLabel}</span>
+        <span className="text-[10px] uppercase tracking-[0.12em] text-dim">{centerLabel}</span>
         <span className="tabular mt-0.5 text-lg font-semibold tracking-tight">{centerValue}</span>
       </div>
     </div>
