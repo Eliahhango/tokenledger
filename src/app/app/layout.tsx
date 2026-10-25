@@ -20,26 +20,44 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-40 border-b border-line bg-black/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-4 px-4 sm:px-6">
-          <Link href="/app" aria-label="Dashboard home">
-            <Logo />
-          </Link>
-          <span className="hidden h-4 w-px bg-line sm:block" />
-          <AppNav />
-          <div className="ml-auto flex items-center gap-2">
-            <div className="hidden items-center gap-2 rounded-lg border border-line bg-white/[0.01] py-1 pl-1 pr-2.5 sm:flex">
-              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white/[0.06] text-[10px] font-medium text-fg">
+      <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[260px_1fr]">
+        <aside className="hidden flex-col border-r border-line bg-black/60 lg:flex">
+          <div className="flex h-14 items-center px-5">
+            <Link href="/app" aria-label="Dashboard home">
+              <Logo />
+            </Link>
+          </div>
+          <nav className="flex-1 px-3 py-2">
+            <AppNav />
+          </nav>
+          <div className="border-t border-line p-3">
+            <div className="flex items-center gap-2 rounded-lg px-2 py-1.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/[0.06] text-[10px] font-medium text-fg">
                 {initials || "TL"}
               </span>
-              <span className="max-w-[140px] truncate text-[12px] text-muted">{workspace.name}</span>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[12px] text-fg">{workspace.name}</div>
+                <div className="text-[10px] text-dim">{workspace.key_prefix}…</div>
+              </div>
+              <SignOutButton />
             </div>
-            <SignOutButton />
           </div>
+        </aside>
+        <div className="flex flex-col">
+          <header className="sticky top-0 z-40 border-b border-line bg-black/80 backdrop-blur-xl lg:hidden">
+            <div className="mx-auto flex h-14 items-center gap-3 px-4">
+              <Link href="/app" aria-label="Dashboard home">
+                <Logo />
+              </Link>
+              <div className="ml-auto flex items-center gap-2">
+                <AppNav />
+                <SignOutButton />
+              </div>
+            </div>
+          </header>
+          <main className="mx-auto w-full max-w-[1400px] flex-1 px-4 py-6 sm:px-6 sm:py-8">{children}</main>
         </div>
-      </header>
-
-      <main className="mx-auto max-w-[1400px] px-4 py-6 sm:px-6 sm:py-8">{children}</main>
+      </div>
     </div>
   );
 }
