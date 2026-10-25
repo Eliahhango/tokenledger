@@ -1,4 +1,5 @@
-import { createSession, createWorkspace } from "@/lib/auth";
+import { createSession, createWorkspace, getCurrentWorkspace } from "@/lib/auth";
+import { getDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,7 +36,14 @@ export async function POST(request: Request) {
   const name = (rawName || "My ledger").slice(0, 48);
 
   try {
-    const { workspace, apiKey } = await createWorkspace(name);
+    let userId: string | null = null;
+    // Try to get user from session
+    try {
+      const db = getDb();
+      // We'll just pass null if not logged in as user for now
+    } catch {}
+
+    const { workspace, apiKey } = await createWorkspace(name, userId);
     await createSession(workspace.id);
     return Response.json(
       {

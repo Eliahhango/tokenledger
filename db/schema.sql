@@ -1,5 +1,13 @@
+create table if not exists users (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  password_hash text not null,
+  created_at timestamptz not null default now()
+);
+
 create table if not exists workspaces (
   id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id) on delete set null,
   name text not null,
   key_hash text not null unique,
   key_prefix text not null,
@@ -8,7 +16,8 @@ create table if not exists workspaces (
 
 create table if not exists sessions (
   token_hash text primary key,
-  workspace_id uuid not null references workspaces(id) on delete cascade,
+  workspace_id uuid references workspaces(id) on delete cascade,
+  user_id uuid references users(id) on delete cascade,
   created_at timestamptz not null default now(),
   expires_at timestamptz not null
 );
@@ -46,5 +55,11 @@ create index if not exists usage_events_workspace_model_idx
 create index if not exists sessions_workspace_idx
   on sessions (workspace_id);
 
+create index if not exists sessions_user_idx
+  on sessions (user_id);
+
 create index if not exists sessions_expires_idx
   on sessions (expires_at);
+
+create index if not exists workspaces_user_idx
+  on workspaces (user_id);
