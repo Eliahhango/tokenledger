@@ -37,10 +37,10 @@ export function RotateKey({ prefix }: { prefix: string }) {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <code className="mono rounded-lg border border-line bg-white/[0.02] px-2.5 py-1.5 text-[12px] text-fg/85">
+          <code className="rounded-lg border border-line bg-white/[0.01] px-2.5 py-1.5 text-[12px] text-fg">
             {prefix}…
           </code>
-          <span className="text-[11px] text-dim">Only the prefix is stored for display.</span>
+          <span className="text-[11px] text-dim">Only the prefix is shown.</span>
         </div>
         <button type="button" onClick={rotate} className="btn btn-ghost btn-sm" disabled={loading}>
           {loading ? "Rotating…" : "Rotate key"}

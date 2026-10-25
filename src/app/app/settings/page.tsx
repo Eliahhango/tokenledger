@@ -58,10 +58,10 @@ export TOKENLEDGER_API_KEY=tl_your_key`;
       <div className="flex flex-col gap-2">
         <div>
           <h1 className="text-[22px] font-semibold tracking-[-0.02em] sm:text-[26px]">
-            Settings
+            Integrations
           </h1>
           <p className="mt-1 text-[12px] text-muted">
-            Connection details for <span className="text-fg">{workspace.name}</span>
+            Connect opencode, MCP, or use the API for <span className="text-fg">{workspace.name}</span>
           </p>
         </div>
       </div>
