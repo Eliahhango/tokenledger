@@ -26,7 +26,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             <button
               type="button"
               aria-label="Toggle sidebar"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-line hover:bg-white/[0.02]"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-white/[0.04]"
               onClick={() => {
                 const el = document.getElementById("app-sidebar");
                 const main = document.getElementById("app-main");
@@ -34,12 +34,12 @@ export default async function AppLayout({ children }: { children: React.ReactNod
                   const hidden = el.dataset.hidden === "true";
                   el.dataset.hidden = hidden ? "false" : "true";
                   main.dataset.sidebar = hidden ? "open" : "closed";
-                  localStorage.setItem("tl_sidebar", hidden ? "open" : "closed");
+                  try { localStorage.setItem("tl_sidebar", hidden ? "open" : "closed"); } catch {}
                 }
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
               </svg>
             </button>
             <Link href="/app" aria-label="Dashboard home" className="flex items-center gap-2">
